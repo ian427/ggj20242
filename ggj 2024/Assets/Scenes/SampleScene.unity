@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 1955117294}
   - component: {fileID: 1955117295}
   m_Layer: 0
-  m_Name: enemy
+  m_Name: Collectable
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,8 +778,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 842221247}
-  MovementSpeed: 1
+  MovementSpeed: -2
   Range: 2
+  txtCiviliansKilled: {fileID: 0}
+  KillCount: 0
 --- !u!212 &1955117292
 SpriteRenderer:
   m_ObjectHideFlags: 0

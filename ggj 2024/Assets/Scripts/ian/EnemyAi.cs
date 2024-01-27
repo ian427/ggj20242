@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class EnemyAi : MonoBehaviour
 {
     public GameObject Player;
@@ -13,6 +14,8 @@ public class EnemyAi : MonoBehaviour
     [SerializeField]
     private float Range;
     private Transform target;
+    public TMP_Text txtCiviliansKilled;
+    public float KillCount;
     // Start is called before the first frame update
 
     void Start()
@@ -47,5 +50,15 @@ public class EnemyAi : MonoBehaviour
     public void ShouldMove()
     {
         CanMove = true;
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Debug.Log("collided");
+        if (collision.gameObject.tag == "Player")// checks for tag
+        {
+            KillCount += 1;
+            Destroy(gameObject, 0f);
+
+        }
     }
 }
