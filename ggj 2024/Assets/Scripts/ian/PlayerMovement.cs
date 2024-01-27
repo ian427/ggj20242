@@ -6,6 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float MovementSpeed = 0.5f;
+
+    [SerializeField]
+    private float FastSpeed = 3f;
+
+    private float Speed;
+
     [SerializeField]
     private float JumpHeight = 5;// forward Movement Speed
     private Rigidbody2D rb;
@@ -16,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Speed = MovementSpeed;
        
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -42,7 +49,20 @@ public class PlayerMovement : MonoBehaviour
             }
                 
         }
-        gameObject.transform.position = new Vector3(transform.position.x+ MovementSpeed, transform.position.y );
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            Speed = FastSpeed;
+        }
+
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            Speed = MovementSpeed;
+        }
+
+
+        gameObject.transform.position = new Vector3(transform.position.x + Speed, transform.position.y);
+
 
     }
 }
