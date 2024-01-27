@@ -15,7 +15,7 @@ public class EnemyAi : MonoBehaviour
     private float Range;
     private Transform target;
     public TMP_Text txtCiviliansKilled;
-    private int KillCount;
+    private int KillCount = 0 ;
     // Start is called before the first frame update
 
     void Start()
@@ -56,8 +56,9 @@ public class EnemyAi : MonoBehaviour
          Debug.Log("collided");
         if (collision.gameObject.tag == "Player")// checks for tag
         {
-            txtCiviliansKilled.text = KillCount.ToString();
             KillCount += 1;
+            txtCiviliansKilled.text = KillCount.ToString();
+            
             Destroy(gameObject, 0f);
 
         }
