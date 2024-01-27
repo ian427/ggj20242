@@ -11,11 +11,11 @@ public class EnemyAi : MonoBehaviour
     
     private bool CanMove = false;
     private CircleCollider2D Field;
-    [SerializeField]
+    
     private float Range;
     private Transform target;
     public TMP_Text txtCiviliansKilled;
-    public float KillCount;
+    private int KillCount;
     // Start is called before the first frame update
 
     void Start()
@@ -40,7 +40,7 @@ public class EnemyAi : MonoBehaviour
         var step = MovementSpeed * Time.deltaTime; // calculate distance to move
         if (CanMove == true)
         {
-            Debug.Log("move");
+           // Debug.Log("move");
           transform.position = Vector3.MoveTowards(transform.position, target.position, step);// Move our position a step closer to the target.
         }
         
@@ -51,11 +51,12 @@ public class EnemyAi : MonoBehaviour
     {
         CanMove = true;
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // Debug.Log("collided");
+         Debug.Log("collided");
         if (collision.gameObject.tag == "Player")// checks for tag
         {
+            txtCiviliansKilled.text = KillCount.ToString();
             KillCount += 1;
             Destroy(gameObject, 0f);
 
